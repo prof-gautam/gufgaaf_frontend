@@ -1,30 +1,50 @@
-# Getting Started with Create React App
+## Chat App Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend for the GufGaf Chat App, a real-time messaging platform that allows users to easily connect and communicate. This React application provides a responsive and interactive user interface to access the chat functionalities.
 
-## Available Scripts
+## Features
+
+- Real-time communication with other users via web sockets
+- User authentication (login/register)
+- Ability to choose and set user avatars
+- Responsive design for a wide range of devices
+
+## Prerequisites
+
+Before running this project, make sure you have Node.js installed on your system. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Installation
+
+Follow these steps to set up the frontend on your local machine:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/prof-gautam/gufgaaf_frontend.git
+   cd gufgaaf_frontend
+   ```
+
 
 In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
+The page will reload when you make changes.
 You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
+Launches the test runner in the interactive watch mode.
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
+Builds the app for production to the `build` folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
+The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.

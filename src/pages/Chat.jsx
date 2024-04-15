@@ -7,7 +7,6 @@ import { allUsersRoute, host } from "../utils/APIRoutes";
 import ChatContainer from "../components/ChatContainer";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome";
-import { FiMenu, FiLogOut } from "react-icons/fi"; // Adding FiLogOut for the logout icon
 
 export default function Chat() {
   const navigate = useNavigate();
@@ -15,8 +14,6 @@ export default function Chat() {
   const [contacts, setContacts] = useState([]);
   const [currentChat, setCurrentChat] = useState(undefined);
   const [currentUser, setCurrentUser] = useState(undefined);
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false); // State to control sidebar visibility
-
   useEffect(async () => {
     if (!localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
       navigate("/login");
@@ -28,7 +25,6 @@ export default function Chat() {
       );
     }
   }, []);
-
   useEffect(() => {
     if (currentUser) {
       socket.current = io(host);
@@ -46,30 +42,13 @@ export default function Chat() {
       }
     }
   }, [currentUser]);
-
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
-
-  const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
-
-  const logout = () => {
-    localStorage.removeItem(process.env.REACT_APP_LOCALHOST_KEY); // Clearing the user session
-    navigate("/login"); // Redirecting to the login page
-  };
-
   return (
     <>
       <Container>
-        <HamburgerMenu onClick={toggleSidebar}>
-          <FiMenu size={30} color="#fff" />
-        </HamburgerMenu>
-        <LogoutIcon onClick={logout}>
-          <FiLogOut size={30} color="#fff" />
-        </LogoutIcon>
-        <div className={`container ${isSidebarVisible ? "show-sidebar" : ""}`}>
+        <div className="container">
           <Contacts contacts={contacts} changeChat={handleChatChange} />
           {currentChat === undefined ? (
             <Welcome />
@@ -96,33 +75,9 @@ const Container = styled.div`
     width: 85vw;
     background-color: #00000076;
     display: grid;
-    grid-template-columns: 35% 65%;
-    transition: all 0.3s ease-in-out;
-    @media screen and (max-width: 768px) {
-      width: 100vw;
-      grid-template-columns: 1fr;
-      &.show-sidebar {
-        transform: translateX(25vw);
-      }
+    grid-template-columns: 25% 75%;
+    @media screen and (min-width: 720px) and (max-width: 1080px) {
+      grid-template-columns: 35% 65%;
     }
   }
-`;
-
-const HamburgerMenu = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 5;
-  cursor: pointer;
-  @media screen and (min-width: 769px) {
-    display: none;
-  }
-`;
-
-const LogoutIcon = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 5;
-  cursor: pointer;
 `;
